@@ -22,16 +22,28 @@ public class FanTest {
 	
 	@Test
 	public void testPullChordFirstReset() {
+		
+		fan.pullChordFirst();
 		fan.pullChordFirst();
 		fan.pullChordFirst();
 		fan.pullChordFirst();
 		
-		Assert.assertEquals(3, fan.getSpeedOFFan());
+		Assert.assertEquals(0, fan.getSpeedOFFan());
 	}
 
 	@Test
 	public void testPullChordSecond() {
 		Assert.assertEquals(Rotation.CLOCKWISE, fan.getFanDirection());
+	}
+	
+	@Test
+	public void reverseDirectionAndVerifySpeed() {
+		fan.pullChordFirst();
+		Assert.assertEquals(1, fan.getSpeedOFFan());
+		Assert.assertEquals(Rotation.CLOCKWISE, fan.getFanDirection());
+		fan.pullChordSecond();
+		Assert.assertEquals(Rotation.ANTICLOCKWISE, fan.getFanDirection());
+		Assert.assertEquals(1, fan.getSpeedOFFan());
 	}
 
 }
