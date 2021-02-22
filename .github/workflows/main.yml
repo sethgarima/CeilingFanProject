@@ -17,6 +17,8 @@ jobs:
         uses: actions/checkout@v2
 
       # run your tests here, produce unit test result files in ./test-results/
+      - name: Run test
+        run: mvn test
 
       - name: Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
@@ -25,7 +27,7 @@ jobs:
         if: always() && github.event_name != 'pull_request'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          files: "*.xml"
+          files: "test-results/*.xml"
 
       - name: Upload Test Results
         if: always()
