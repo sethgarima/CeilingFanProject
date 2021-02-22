@@ -19,6 +19,9 @@ jobs:
       # run your tests here, produce unit test result files in ./test-results/
       - name: Run test
         run: mvn test
+        
+      - name: Copy results
+        run: mkdir test-results && cp target/*.jar test-results
 
       - name: Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
