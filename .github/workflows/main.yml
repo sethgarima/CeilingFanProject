@@ -18,10 +18,10 @@ jobs:
 
       # run your tests here, produce unit test result files in ./test-results/
       - name: Run test
-        run: mvn install test
+        run: mvn clean install test surefire-report:report
         
       - name: Copy results
-        run: mkdir test-results && cp target/*.jar test-results
+        run: mkdir test-results && cp target/surefire-reports/*.xml test-results
 
       - name: Unit Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
